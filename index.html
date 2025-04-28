@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Automated CPU Design by Learning from Input-Output Examples">
+  <meta name="keywords" content="Machine Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Automated CPU Design by Learning from Input-Output Examples</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <!-- highlight code -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <style>
+    table {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    caption {
+      caption-side: bottom;
+      padding: 10px;
+      font-style: italic;
+    }
+    .table-container {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 作者 -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Automated CPU Design by Learning from Input-Output Examples
+            </h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a>Shuyao Cheng</a><sup>1,2,3</sup>,</span>
+              <span class="author-block">
+                <a>Pengwei Jin</a><sup>1,2,3</sup>,</span>
+              <span class="author-block">
+                <a>Qi Guo</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a>Zidong Du</a><sup>1,4</sup>,
+              </span>
+              <span class="author-block">
+                <a>Rui Zhang</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a>Xing Hu</a><sup>1,4</sup>,
+              </span>
+              <span class="author-block">
+                <a>Yongwei Zhao</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a>Yifan Hao</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a>Xiangtao Guan</a><sup>5</sup>,
+              </span>
+              <span class="author-block">
+                <a>Husheng Han</a><sup>1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a>Zhengyue Zhao</a><sup>1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a>Ximing Liu</a><sup>1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a>Xishan Zhang</a><sup>1,3</sup>,
+              </span>
+              <span class="author-block">
+                <a>Yuejie Chu</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a>Weilong Mao</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a>Tianshi Chen</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a>Yunji Chen</a><sup>1,2</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>State Key Lab of Processors, Institute of Computing Technology, Chinese Academy of Sciences</span><br>
+              <span class="author-block"><sup>2</sup>University of Chinese Academy of Sciences</span><br>
+              <span class="author-block"><sup>3</sup>Cambricon Technologies</span><br>
+              <span class="author-block"><sup>4</sup>Shanghai Innovation Center for Processor Technologies</span><br>
+              <span class="author-block"><sup>5</sup>University of Science and Technology of China</span><br>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://www.ijcai.org/proceedings/2024/0425.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>PDF</span>
+                  </a>
+                </span>
+                <!-- IJCAI Link. -->
+                <!-- <span class="link-block">
+                  <a href="https://www.ijcai.org/proceedings/2024/425" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-book"></i>
+                    </span>
+                    <span>IJCAI '24</span>
+                  </a>
+                </span> -->
+                <!-- ACM Link. -->
+                <!-- <span class="link-block">
+                  <a href="https://dl.acm.org/doi/10.24963/ijcai.2024/425" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-acm"></i>
+                    </span>
+                    <span>IJCAI '24</span>
+                  </a>
+                </span> -->
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/Qimeng-ICT/Qimeng-1" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-code"></i>
+                    </span>
+                    <span>Code and Designs</span>
+                  </a>
+                </span>
+                <!-- Web Link.
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2306.12456" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span> -->
+                <!-- Raw data Link-->
+                <!-- <span class="link-block">
+                  <a href="https://huggingface.co/yang-z"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-cloud-download-alt"></i>
+                    </span>
+                    <span>Download</span>
+                  </a>
+                </span> -->
+                <!-- Raw data Link-->
+                <!-- <span class="link-block">
+                  <a href="https://iprc-dip.github.io/Chip-Design-LLM-Zoo/"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-trophy"></i>
+                    </span>
+                    <span>Leaderboard</span>
+                  </a>
+                </span> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <!-- <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Designing a central processing unit (CPU) requires intensive manual work by talented experts to implement the circuit logic from design specifications. Although considerable progress has been made in electronic design automation (EDA) to relieve human efforts, all existing tools require hand-crafted formal program codes (e.g., Verilog, Chisel, or C) as the input.
+            </p>
+            <p>
+              To automate CPU design without human programming, we are motivated to learn the CPU design from only input-output (IO) examples, which are generated from test cases of design specification. The key challenge is that the learned CPU design must have near-zero tolerance for inaccuracy, rendering well-known approximate algorithms, such as neural networks, ineffective.
+            </p>
+            <p>
+              We propose a novel AI approach to generate the CPU design as a large-scale Boolean function, using only external IO examples instead of formal program code. This approach employs a new graph structure called the Binary Speculative Diagram (BSD) to accurately approximate the CPU-scale Boolean function. We introduce an efficient BSD expansion method based on <em>Boolean Distance</em>, a new metric to quantitatively measure the structural similarity between Boolean functions, gradually achieving 100% design accuracy.
+            </p>
+            <p>
+              Our approach generates an industrial-scale RISC-V CPU design in just 5 hours, reducing the design cycle by approximately 1000× without human involvement. The taped-out chip, Enlightenment-1, the world's first CPU designed by AI, successfully runs the Linux operating system and performs comparably to the human-designed Intel 80486SX CPU. Remarkably, our approach autonomously rediscovers human knowledge of the von Neumann architecture.
+            </p>
+          </div>
+        </div>
+      </div> -->
+      <!--/ Abstract. -->
+      <!-- Overview. -->
+      <div class="columns is-centered">
+        <div class="column">
+
+          <div class="content">
+            <h2 class="title is-3" style="text-align: center;">Overview</h2>
+            <p>
+              Designing a central processing unit (CPU) requires intensive manual work by talented experts to implement the circuit logic from design specifications, involving an iterative process that demands significant effort in programming, debugging, and verification (shown in Figure 1 (a)). Although considerable progress has been made in electronic design automation (EDA) to relieve human efforts, all existing tools require hand-crafted formal program codes (e.g., Verilog, Chisel, or C) as the input.
+            </p>  
+            <p> 
+              To automate CPU design without human programming, we are motivated to learn the CPU design from only input-output (IO) examples, which are generated from test cases of design specification (shown in Figure 1 (b)). The key challenge is that the learned CPU design must have near-zero tolerance for inaccuracy, rendering well-known approximate algorithms, such as neural networks, ineffective.
+            </p>
+            <p>
+              We propose a novel AI approach to generate the CPU design as a large-scale Boolean function, using only external IO examples instead of formal program code. This approach employs a new graph structure called the Binary Speculative Diagram (BSD) to accurately approximate the CPU-scale Boolean function. We introduce an efficient BSD expansion method based on Boolean Distance, a new metric to quantitatively measure the structural similarity between Boolean functions, gradually achieving 100% design accuracy.
+            </p>
+            <p>
+              Our approach generates an industrial-scale RISC-V CPU design in just 5 hours which is over 1700× larger than existing work (shown in Table 1), reducing the design cycle by approximately 1000× without human involvement. The taped-out chip, Enlightenment-1, the world's first CPU designed by AI, successfully runs the Linux operating system and performs comparably to the human-designed Intel 80486SX CPU. Remarkably, our approach autonomously rediscovers human knowledge of the von Neumann architecture.
+            </p>
+            <!-- <p>
+              The conventional design flow is an iterative process that requires significant manual efforts in programming, debugging, and verification of the circuit logic. By contrast, we propose an automated CPU design flow which learns the circuit logic solely from input-output (IO) examples of test cases, utilizing our proposed BSD expansion method. When the generated circuit logic fails to pass specific tests, more IO examples will be automatically sampled from the test cases to update the generated circuit logic. This is a fully automatic and iterative process where the generated circuit logic is verified and debugged till it successfully passes a sufficient number of tests. -->
+              <!-- We first collect input-output examples from legacy programs and constrained test generation. These examples are used to construct a Binary Speculative Diagram (BSD), iteratively expanded via Boolean Distance to achieve high accuracy. The resulting large-scale Boolean function is converted to a Verilog module, yielding the Enlightenment-1 RISC-V CPU design. -->
+            <!-- </p> -->
+            <figure>
+              <img src="./static/images/ijcai-fig 1.png" style="width: 70%;">
+              <figcaption>Figure 1: <strong>Comparison of CPU design flow.</strong> (a) The conventional design flow is an iterative process with huge manual efforts in programming, debugging, and verification of the circuit logic. (b) The proposed automated design flow, which learns the circuit logic only from input-output (IO) examples of test cases with the proposed BSD expansion, is a fully-automatic and iterative process that eliminates manual efforts on programming, debugging, and verification of the circuit logic.</figcaption>
+            </figure>
+            <figure>
+              <img src="./static/images/table0.png" style="width: 70%;">
+              <figcaption>
+                Table 1: Comparison with automated circuit design tasks.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <!--/ Overview. -->
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- <div class="columns is-centered">
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-3">Methodology</h2>
+            <p>
+              [TODO]
+            </p>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="columns is-centered">
+      <!-- <div class="columns is-centered has-text-centered"> -->
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-3" style="text-align: center;">Enlightenment-1: The World's First Automatically Generated CPU </h2>
+            <p>
+              We use the proposed approach to automatically generate a 32-bit RISC-V CPU, Enlightenment-1, within 5 hours, and demonstrate that the approach can discover human knowledge of von Neumann architecture. 
+            </p>
+            <h3 class="title is-4">Automatically Design a RISC-V CPU</h3>
+            <p>
+              We use the proposed approach to generate the CPU design from a relatively small set of IO examples. Concretely, the CPU has 1789 input bits and 1826 output bits, and thus the total number of IO examples is 1826 × 2<sup>1798</sup>, while only less than 2<sup>40</sup> IO examples are randomly sampled for training. 
+              The training process takes less than 5 hours to achieve an accuracy of >99.99999999999% for validation tests. The generated CPU design then undergoes the physical design process with scripts at 65nm technology to generate the layout for fabrication，and the detailed hardware characteristics are listed in Table 2.
+              The layout of the entire chip with major components marked, the manufactured chip with a frequency of 300 MHz, and the printed circuit board containing the chip are illustrated below.
+              <!-- Although we demonstrate the capability of our approach with the RISC-V32IA instruction set, it can generate the circuit logic of other CPUs with different instruction sets as long as we can obtain the IO examples. -->
+          </p>
+            <figure>
+              <img src="./static/images/table1.png" style="width: 70%;">
+              <figcaption>
+                Table 2: Hardware characteristics of Enlightenment-1.
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="./static/images/AAAI_fig7.png" style="width: 50%;">
+              <figcaption>Figure 2: The (a) layout, (b) manufactured chip, and (c) printed circuit board of Enlightenment-1.</figcaption>
+            </figure>
+            <h3 class="title is-4">Perform Comparably to Intel 80486SX CPU</h3>
+            <p>
+              We successfully run the Linux (kernel 5.15) operating system and SPEC CINT2000 on Enlightenment-1 to validate the functionality (see Figure 3 (a) below). We also use the widely-used Dhrystone to evaluate the performance. The Figure 3 (b) below compares the performance of Enlightenment-1 against different generations of commercial CPUs, e.g., Intel 80386 (1980s), Intel 80486SX (1990s), and Intel Pentium III (2000s). On the evaluated program, it performs comparably to Intel 80486SX, designed in mid-1991. Though Enlightenment-1 performs worse than modern processors such as Intel Core i7 3930K, it is the world’s first automatically designed CPU, and its performance could be significantly improved with augmented algorithms, which is left as our future work.
+            </p>
+            <figure>
+              <img src="./static/images/ijcai-fig 6.png" style="width: 70%;">
+              <figcaption>
+                Figure 3: <b>Functional validation and performance comparison.</b> 
+                (a) The outputs of booting up the Linux operating system. 
+                (b) The performance of Enlightenment-1 is compared against commercial CPUs on the Dhrystone benchmark, and Enlightenment-1 performs comparably to the human-designed Intel 80486SX CPU.
+              </figcaption>
+            </figure>
+            <!-- <p>
+              <strong>Reduction of Development Costs.</strong><br>
+              To demonstrate that the proposed method reforms the CPU design flow, we further compare the development costs of Enlightenment-1 and human-designed CPU (i.e., CPU-Man), where the internal registers of CPU-Man exhibit exactly the same behavior as Enlightenment-1 based on the same instruction set specification. The CPU-Man takes approximately ~ 5000 man-hours to complete the entire design, while Enlightenment-1 only takes less than 5 hours to obtain the design by training from the IO examples. The reduction of development costs is further validated by the design and verification costs of an Intel 486-compatible CPU, K486, which takes more than 190 days (i.e., 4560 hours) merely for the verification process. The reason is that manual efforts in programming, debugging, and verification of circuit logic in the conventional CPU design flow are completely eliminated.
+          </p> -->
+            <!-- <h3 class="title is-4">Comparison with State-of-the-art</h3>
+            <p>
+              Automated circuit design is an extremely challenging task, and thus there are only several recent studies on using machine learning methods to generate small-scale circuits, including LLMs, NNs, Reinforcement Learning (RL), Decision Trees (DTs) and Ensemble Learning (EL) methods. 
+            </p>
+            <p>
+              <b>Experiment on small-scale circuit designs.</b><br>
+              As listed in Table 1, circuits automatically designed by our approach are more than 1700× larger than existing work, because they cannot yet handle the accuracy challenge of large-scale circuits such as CPUs. Besides, these designs are only verified on a limited number of test cases, and cannot guarantee the strict design accuracy for taped-out industrial CPUs.
+              In comparison, the proposed method can functionally design all the benchmark circuits solved by the state-of-the-art methods in the ICCAD contest and Opencores accurately.
+              The experiment benchmarks in these tasks are components of a large-scale processor, such as the logic/arithmetic unit or controllers in the processor, or over-simplified CPUs that cannot even run modern essential programs, such as the Linux operating system or other modern file systems.
+            </p>
+            <div class="table-container">
+              <table>
+                <caption>Table 1: Comparison with automated circuit design tasks.</caption>
+                <thead>
+                  <tr>
+                    <th>Target Circuit</th>
+                    <th>Gate No.</th>
+                    <th>Methods</th>
+                    <th>Tape-out Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Adder</td>
+                    <td>118</td>
+                    <td>RL</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td>Circuit Modules</td>
+                    <td>186</td>
+                    <td>DT</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td>Circuit Modules</td>
+                    <td>~2500</td>
+                    <td>EL</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td>8-bit CPU</td>
+                    <td>999</td>
+                    <td>LLM</td>
+                    <td>2023-05</td>
+                  </tr>
+                  <tr>
+                    <td>Enlightenment-1</td>
+                    <td>4,272,680</td>
+                    <td>BSD</td>
+                    <td>2021-12</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+            <!-- <p>
+              <b>Experiment on the large-scale CPU design.</b><br>
+              We apply state-of-the-art algorithms in the proposed CPU design flow to design the circuit logic, replacing the proposed BSD expansion method. However, all these methods fail due to the strict accuracy constraint.
+              With only IOs as prompt without any structural description from the human designer, the LLM-based methods can only read 1 pair of IO examples with 2000 tokens, and it is impossible to design.
+              The RL-based method does not have a proper initialization without a formal expression and fails to design due to the sparse rewards in the vast design space.
+              All the DT-based methods fail to design, because without the merging possibility in the data structure, for such large-scale circuit design, it fails because of state explosion.
+              NN methods can fit the IOs, but even the training errors are not close to 10<sup>-13</sup>, and drop more in the quantization to produce the circuit logic.
+            </p> -->
+            <h3 class="title is-4">Discover the von Neumann Architecture</h3>
+            <p>
+              By detailing the generated circuit logic of Enlightenment-1, we demonstrate that our approach discovers human knowledge of von Neumann architecture only from the IO examples. Concretely, the generated CPU design in terms of BSD has the key component of the von Neumann architecture, which mainly consists of the control unit generated first in the BSD for global control, and the arithmetic unit (see Figure 4). The control unit generates the controlling signals for the entire CPU, and the arithmetic unit accomplishes arithmetic operations (e.g., ADD and SUB) and logic operations (e.g., AND and OR). Moreover, we observe that both the control unit and arithmetic unit can be recursively decomposed into smaller functional modules such as the instruction decoder, ALU, and LSU (load/store unit) by expanding more BSD layers.
+            </p>
+            <figure>
+              <img src="./static/images/ijcai-fig 7.png" style="width: 70%;">
+              <figcaption>
+                Figure 4: <b>Discovering von Neumann architecture from scratch.</b> The generated BSD mainly consists of the control unit and arithmetic unit, which can be further decomposed into sub-modules in the BSD, e.g., the control unit contains the privilege controller and instruction decoder, and the arithmetic unit contains ALU and LSU.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- <div class="columns is-centered">
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-3">An Illustrate Example</h2>
+            <div>
+              <p>
+                Here we use an 8-bit adder, <code>c[8:0] = a[7:0] + b[7:0]</code>, as an illustrative example to detail the process of the BSD expansion. 
+                The initialized BSD consists of only 9 root nodes, representing the output bits <code>c[8:0]</code>. Figure 5(a) illustrates one single iteration of the BSD expansion.
+              </p>
+              <p>
+                First, the highest bit <code>c[8]</code> is chosen for expansion, and by calculating the Boolean Distance, <code>c[7]</code> is selected to cluster with <code>c[8]</code>, as many child nodes of these nodes can be reused. If <code>c[7]</code> and <code>c[8]</code> are designed individually, the total BSD nodes would be <code>C<sub>Ω</sub>(c<sub>8</sub>) + C<sub>Ω</sub>(c<sub>7</sub>) = 43 + 23 = 66</code>. However, when clustered, the total BSD nodes are <code>C<sub>Ω</sub>(c<sub>8</sub>, c<sub>7</sub>) = 46</code>. The Boolean Distance, <code>Dist = C<sub>Ω</sub>(c<sub>8</sub>) + C<sub>Ω</sub>(c<sub>7</sub>) - C<sub>Ω</sub>(c<sub>8</sub>, c<sub>7</sub>) = 20 > 0</code>, indicates that 20 BSD nodes can be reused, making it efficient to cluster these nodes together.
+              </p>
+              <p>
+                Next, within the cluster of <code>c[8]</code> and <code>c[7]</code>, the variable that increases accuracy the most is expanded first. Based on the IO examples, the most significant bits <code>a[7]</code> and <code>b[7]</code> are expanded first. During this expansion, merging possibilities are identified using the Monte Carlo method according to Theorem 1. Specifically, <code>c[8] | (a[7]=0, b[7]=0) = 0</code>, meaning when <code>a[7]=0</code> and <code>b[7]=0</code>, <code>c[8]=0</code>, so this node is constant 0 and its expansion ends. Similarly, <code>c[8] | (a[7]=1, b[7]=1) = 1</code>, so this node is constant 1 and its expansion ends. Using the Monte Carlo method, it is found that <code>c[8] | (a[7]=0, b[7]=1) = c[8] | (a[7]=1, b[7]=0) = c[7] | (a[7]=0, b[7]=1) = c[7] | (a[7]=1, b[7]=0)</code>, allowing these four sub-functions to be merged into one speculated node. Likewise, <code>c[7] | (a[7]=0, b[7]=0) = c[7] | (a[7]=1, b[7]=1)</code>, so these two nodes are also merged. Thus, after the 2-variable expansion, only 2 speculated nodes remain. In contrast, if these nodes were not clustered and expanded separately, there would be 4 speculated nodes remaining, and 20 additional nodes after full expansion, demonstrating that node clustering efficiently reduces BSD nodes.
+              </p>
+              <p>
+                After the iteration expanding two variables, the circuit logic is updated with the BSD and checked for verification. The iteration continues until verification is passed. In this case, the current BSD fails verification because the speculated nodes are not yet constant 0 or 1. Therefore, another BSD node is chosen to start a new iteration. Finally, when the designed BSD passes verification, the BSD is output in Verilog, completing the automated circuit logic design from our method.
+              </p>
+            </div>
+            <figure>
+              <img src="./static/images/2024ijcai_fig4.png">
+              <figcaption>
+                Figure 5: <b>An 8-bit full adder example of BSD expansion.</b> An iteration in the BSD expansion.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+  
+    <!-- <hr/> -->
+    <!-- <section class="section" id="BibTeX"> -->
+      <!-- <div class="columns is-centered"> -->
+    <div class="container content is-max-desktop">
+            <h2 class="title is-3"> BibTex </h2>
+              <pre><code class="nohighlight" style="background-color: transparent; color: black; font-family: monospace;">@inproceedings{10.24963/ijcai.2024/425,
+  author = {Cheng, Shuyao and Jin, Pengwei and Guo, Qi and Du, Zidong and Zhang, Rui and Hu, Xing and Zhao, Yongwei and Hao, Yifan and Guan, Xiangtao and Han, Husheng and Zhao, Zhengyue and Liu, Ximing and Zhang, Xishan and Chu, Yuejie and Mao, Weilong and Chen, Tianshi and Chen, Yunji},
+  title = {Automated CPU design by learning from input-output examples},
+  year = {2024},
+  isbn = {978-1-956792-04-1},
+  url = {https://doi.org/10.24963/ijcai.2024/425},
+  doi = {10.24963/ijcai.2024/425},
+  abstract = {Designing a central processing unit (CPU) requires intensive manual work of talented experts to implement the circuit logic from design specifications. Although considerable progress has been made in electronic design automation (EDA) to relieve human efforts, all existing tools require handcrafted formal program codes (e.g., Verilog, Chisel, or C) as the input. To automate the CPU design without human programming, we are motivated to learn the CPU design from only input-output (IO) examples, which are generated from test cases of design specification. The key challenge is that the learned CPU design should have almost zero tolerance for inaccuracy, which makes well-known approximate algorithms such as neural networks ineffective.We propose a new AI approach to generate the CPU design in the form of a large-scale Boolean function, from only external IO examples instead of formal program code. This approach employs a novel graph structure called Binary Speculative Diagram (BSD) to approximate the CPU-scale Boolean function accurately. We propose an efficient BSD expansion method based on Boolean Distance, a new metric to quantitatively measure the structural similarity between Boolean functions, gradually increasing the design accuracy up to 100\%. Our approach generates an industrial-scale RISC-V CPU design within 5 hours, reducing the design cycle by about 1000\texttimes{} without human involvement. The taped-out chip, Enlightenment-1, the world's first CPU designed by AI, successfully runs the Linux operating system and performs comparably against the human-design Intel 80486SX CPU. Our approach even autonomously discovers human knowledge of the von Neumann architecture.},
+  booktitle = {Proceedings of the Thirty-Third International Joint Conference on Artificial Intelligence},
+  articleno = {425},
+  numpages = {11},
+  location = {Jeju, Korea},
+  series = {IJCAI '24}
+}</code></pre>
+    </div>
+      <!-- </section> -->
+  </section>
+
+  <!-- <hr/> -->
+  
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              Thanks for the website template <a href="https://nerfies.github.io">Nerfies</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
