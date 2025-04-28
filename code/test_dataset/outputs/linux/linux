@@ -1,0 +1,83 @@
+[    0.000000] Linux version 5.15.12-02172-g9b62b5e80305-dirty (XXX@XXX) (riscv32-unknown-linux-gnu-gcc (GCC) 11.1.0, GNU ld (GNU Binutils) 2.37) #60 Tue Jul 5 11:19:39 CST 2022
+[    0.000000] OF: fdt: Ignoring memory range 0x80000000 - 0x80400000
+[    0.000000] Machine model: riscv-virtio,qemu
+[    0.000000] earlycon: sbi0 at I/O port 0x0 (options '')
+[    0.000000] printk: bootconsole [sbi0] enabled
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x0000000080400000-0x0000000087ffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080400000-0x0000000087ffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000080400000-0x0000000087ffffff]
+[    0.000000] SBI specification v0.2 detected
+[    0.000000] SBI implementation ID=0x1 Version=0x6
+[    0.000000] SBI TIME extension detected
+[    0.000000] SBI IPI extension detected
+[    0.000000] SBI RFENCE extension detected
+[    0.000000] riscv: ISA extensions acdfimsu
+[    0.000000] riscv: ELF capabilities acdfim
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 31496
+[    0.000000] Kernel command line: nokaslr root=/dev/mmcblk0p1 rootfstype=ext4 rw rootdelay=1 console=ttyS0,230400n8 earlycon=sbi
+[    0.000000] Unknown kernel command line parameters "nokaslr", will be passed to user space.
+[    0.000000] Dentry cache hash table entries: 16384 (order: 4, 65536 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 8192 (order: 3, 32768 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 120824K/126976K available (3588K kernel code, 521K rwdata, 550K rodata, 151K init, 203K bss, 6152K reserved, 0K cma-reserved)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] riscv-intc: 32 local interrupts mapped
+[    0.000000] irq-xilinx: /soc/interrupt-controller@1fb00000: num_irq=8, edge=0x1
+[    0.000000] random: get_random_bytes called from start_kernel+0x474/0x600 with crng_init=0
+[    0.000000] RISCV_Timebase = 50000000
+[    0.000000] riscv_timer_init_dt: Registering clocksource cpuid [0] hartid [0]
+[    0.000000] clocksource: riscv_clocksource: mask: 0xffffffffffffffff max_cycles: 0xb8812736b, max_idle_ns: 440795202655 ns
+[    0.000893] sched_clock: 64 bits at 50MHz, resolution 20ns, wraps every 4398046511100ns
+[    0.030861] Registering, riscv_timebase = 50000000
+[    0.091382] Console: colour dummy device 80x25
+[    0.117815] Calibrating delay loop (skipped), value calculated using timer frequency.. 100.00 BogoMIPS (lpj=500000)
+[    0.163253] pid_max: default: 32768 minimum: 301
+[    0.246068] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.282853] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.767304] ASID allocator using 9 bits (512 entries)
+[    0.900994] devtmpfs: initialized
+[    1.270079] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    1.313952] futex hash table entries: 256 (order: -1, 3072 bytes, linear)
+[    3.042483] clocksource: Switched to clocksource riscv_clocksource
+[    9.951373] workingset: timestamp_bits=30 max_order=15 bucket_order=0
+[   18.602683] io scheduler mq-deadline registered
+[   18.642354] io scheduler kyber registered
+[   56.232185] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[   57.192229] printk: console [ttyS0] disabled
+[   57.300439] 10000000.uart: ttyS0 at MMIO 0x10000000 (irq = 2, base_baud = 3125000) is a 16550A
+[   57.372982] printk: console [ttyS0] enabled
+[   57.372982] printk: console [ttyS0] enabled
+[   57.452703] printk: bootconsole [sbi0] disabled
+[   57.452703] printk: bootconsole [sbi0] disabled
+[   61.692418] loop: module loaded
+[   64.101735] Waiting 1 sec before mounting root device...
+[   64.660337] mmc0: host does not support reading read-only switch, assuming write-enable
+[   64.741402] mmc0: new SDHC card at address 0001
+[   65.172338] mmcblk0: mmc0:0001 SD8GB 7.28 GiB 
+[   67.431883] GPT:Primary header thinks Alt. header is not at the end of the disk.
+[   67.520320] GPT:2301991 != 15273983
+[   67.580386] GPT:Alternate GPT header not at the end of the disk.
+[   67.640470] GPT:2301991 != 15273983
+[   67.692924] GPT: Use GNU Parted to correct GPT errors.
+[   68.012100]  mmcblk0: p1
+[   71.352830] EXT4-fs (mmcblk0p1): mounted filesystem with ordered data mode. Opts: (null). Quota mode: disabled.
+[   71.491581] VFS: Mounted root (ext4 filesystem) on device 179:1.
+[   71.842369] devtmpfs: mounted
+[   72.081389] Freeing unused kernel image (initmem) memory: 148K
+[   72.161080] Kernel memory protection not selected by kernel config.
+[   72.240779] Run /sbin/init as init process
+[   76.265087] random: fast init done
+ _     ___ _   _ _   ___  __  _  _______ ____  _   _ _____ _
+| |   |_ _| \ | | | | \ \/ / | |/ / ____|  _ \| \ | | ____| |
+| |    | ||  \| | | | |\  /  | ' /|  _| | |_) |  \| |  _| | |
+| |___ | || |\  | |_| |/  \  | . \| |___|  _ <| |\  | |___| |___
+|_____|___|_| \_|\___//_/\_\ |_|\_\_____|_| \_\_| \_|_____|_____|
+Version : 5.15.12
+Arch    : RISCV32
+
+Please press Enter to activate this console. 
+/ # 
